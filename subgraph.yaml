@@ -1,0 +1,41 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Contract
+    network: rinkeby
+    source:
+      address: "0x918872e574Df565e688c26156D756a2aB69A1b2F"
+      abi: Contract
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - ApprovalForAll
+        - OwnershipTransferred
+        - RemoveNft
+        - Transfer
+        - UpdateNftOwner
+        - WhitelistingNft
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: RemoveNft(address,uint256)
+          handler: handleRemoveNft
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+        - event: UpdateNftOwner(uint256,address,address,uint256)
+          handler: handleUpdateNftOwner
+        - event: WhitelistingNft(address,address,uint256,uint256,uint256)
+          handler: handleWhitelistingNft
+      file: ./src/contract.ts
