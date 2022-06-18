@@ -1,6 +1,6 @@
 specVersion: 0.0.4
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: Contract
@@ -27,7 +27,7 @@ dataSources:
         - RemoveFromMarketplace
       abis:
         - name: Contract
-          file: ./abis/Contract.json
+          file: Contract/abis/Contract.json
       eventHandlers:
         - event: Approval(indexed address,indexed address,indexed uint256)
           handler: handleApproval
@@ -43,4 +43,4 @@ dataSources:
           handler: handleUpdateNftOwner
         - event: WhitelistingNft(address,address,uint256,uint256,uint256)
           handler: handleWhitelistingNft
-      file: ./src/contract.ts
+      file: Contract/Contract.wasm
